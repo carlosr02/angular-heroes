@@ -1,9 +1,15 @@
 <h1>{{title}}</h1>
-<h2>{{hero.name}} details!</h2>
-<div>
-  <label>id: </label>{{hero.id}}
+<div *ngIf="selectedHero">
+  <h2>{{selectedHero.name}} details!</h2>
+  <div><label>id: </label>{{selectedHero.id}}</div>
+  <div>
+    <label>nome: </label>
+    <input [(ngModel)]="selectedHero.name" placeholder="nome">
+  </div>
 </div>
-<div>
-  <label>nome: </label>
-  <input [(ngModel)]="hero.nome" placeholder="nome">
-</div>
+<h2>My heroes</h2>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
